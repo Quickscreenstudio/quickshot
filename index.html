@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QuickShot - Free Online Screen Capture Tool</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <img src="QS_Logo.png" alt="QuickShot Logo" style="height: 110px; width: auto;">
+        <h1 id="headerTitle" style="margin: 0;">Free, Instant, Online Screen Capture Tool</h1>
+      </div>
+      <select id="languageSelect">
+        <option value="en" selected>English</option>
+        <option value="zh-cn">中文 (简体)</option>
+        <option value="zh-tw">中文 (繁體)</option>
+        <option value="es">Español</option>
+      </select>
+    </header>
+
+    <div class="card grid">
+      <div>
+        <!-- Device Selection -->
+        <section style="margin-bottom:12px">
+          <div class="muted" id="pickDeviceText">Pick Your Device</div>
+          <div class="device-list" style="margin-top:8px">
+            <button id="btnWindows">Desktop (Windows)</button>
+            <button id="btnMac">Desktop (Mac)</button>
+            <button id="btnLinux">Desktop (Linux)</button>
+          </div>
+        </section>
+
+        <!-- Screenshot -->
+        <section class="controls card" style="margin-top:12px">
+          <div style="margin-bottom:8px"><strong>Desktop capture</strong></div>
+          <button id="captureScreen" class="big">Take Screenshot</button>
+          <div style="margin-top:10px" class="hint" id="hintText">
+            When prompted, select a <b>Window</b> and click Share. You’ll stay on this page, and your screenshot will appear in the preview box on the right.
+          </div>
+        </section>
+
+        <!-- Feedback / Donation -->
+        <section class="card" style="margin-top:12px;">
+          <div><strong>Send us a message / Feedback</strong></div>
+          <textarea id="userMessage" placeholder="Type your comment or suggestion..." rows="4"></textarea>
+          <button id="sendMessage" class="big" style="margin-top:8px;">Send Message</button>
+          <div id="messageStatus" class="muted" style="margin-top:4px;"></div>
+        </section>
+
+        <section class="card" style="margin-top:12px;text-align:center;">
+          <div><strong>Support this free tool</strong></div>
+          <a href="https://ko-fi.com/quickscreenstudio" target="_blank">
+            <button class="big" style="margin-top:6px;">Donate / Buy me a coffee ☕</button>
+          </a>
+        </section>
+
+        <section style="margin-top:12px" class="card">
+          <div><strong>Instructions / Privacy</strong></div>
+          <div style="margin-top:8px" class="muted" id="privacyText">
+            All captures happen in your browser. No files are uploaded to any server unless you explicitly share them.
+          </div>
+        </section>
+      </div>
+
+      <!-- Preview + Actions -->
+      <aside>
+        <div class="card preview" id="previewCard">
+          <div id="previewInner">
+            <div class="muted">Preview area — your captured screenshot will appear here</div>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="downloadBtn" class="big" disabled>Download</button>
+          <button id="copyBtn" class="big" disabled>Copy</button>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div class="ad-slot" style="margin-top:20px">Bottom Ad — replace with ad code</div>
+    </footer>
+  </div>
+
+  <div class="side-ad">
+    <div class="ad-slot">Side Ad — replace with ad code</div>
+  </div>
+
+  <!-- Interstitial modal -->
+  <div class="interstitial" id="interstitial">
+    <div class="box">
+      <div style="margin-bottom:10px"><strong>Sponsored message</strong></div>
+      <div class="ad-slot" style="margin-bottom:10px">(Ad placeholder)</div>
+      <div class="muted">Preparing your screenshot... <span id="countdown">3</span>s</div>
+    </div>
+  </div>
+
+  <!-- Hidden elements -->
+  <video id="screenVideo" style="display:none"></video>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
