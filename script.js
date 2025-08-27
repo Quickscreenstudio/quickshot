@@ -53,7 +53,6 @@ function updateLanguage(lang) {
   document.getElementById("captureScreen").textContent = texts[lang].takeScreenshot;
   document.getElementById("hintText").innerHTML = texts[lang].hint;
   document.getElementById("downloadBtn").textContent = texts[lang].download;
-  document.getElementById("copyBtn").textContent = texts[lang].copy;
   document.getElementById("privacyText").textContent = texts[lang].privacy;
   document.getElementById("sendMessage").textContent = texts[lang].sendMessage;
   document.querySelector('a button.big').textContent = texts[lang].donate;
@@ -75,7 +74,6 @@ document.querySelectorAll('.device-list button').forEach(btn => {
 const previewInner = document.getElementById('previewInner');
 const captureScreenBtn = document.getElementById('captureScreen');
 const downloadBtn = document.getElementById('downloadBtn');
-const copyBtn = document.getElementById('copyBtn');
 const interstitial = document.getElementById('interstitial');
 const countdownEl = document.getElementById('countdown');
 let latestBlobUrl = null;
@@ -83,7 +81,6 @@ let latestBlobUrl = null;
 function clearPreview() {
   previewInner.innerHTML = '<div class="muted">Preview area — your captured screenshot will appear here</div>';
   downloadBtn.disabled = true;
-  copyBtn.disabled = true;
   if(latestBlobUrl) URL.revokeObjectURL(latestBlobUrl);
   latestBlobUrl = null;
 }
@@ -104,7 +101,7 @@ async function captureScreen() {
     stream.getTracks().forEach(t => t.stop());
     const img = document.createElement('img'); img.src = canvas.toDataURL('image/png'); img.style.maxWidth='100%';
     previewInner.innerHTML=''; previewInner.appendChild(img);
-    canvas.toBlob(blob => { if(latestBlobUrl) URL.revokeObjectURL(latestBlobUrl); latestBlobUrl=URL.createObjectURL(blob); downloadBtn.disabled=false; copyBtn.disabled=false; }, 'image/png');
+    canvas.toBlob(blob => { if(latestBlobUrl) URL.revokeObjectURL(latestBlobUrl); latestBlobUrl=URL.createObjectURL(blob); downloadBtn.disabled=false; }, 'image/png');
   } catch(e){console.error(e); alert('Could not capture window.');}
 }
 
@@ -119,30 +116,17 @@ function triggerDownload(){
   const a = document.createElement('a'); a.href=latestBlobUrl; a.download='screenshot.png'; document.body.appendChild(a); a.click(); a.remove();
 }
 
-async function copyToClipboard(){
-  if(!latestBlobUrl) return;
-  try {
-    const res = await fetch(latestBlobUrl); const blob = await res.blob();
-    await navigator.clipboard.write([new ClipboardItem({'image/png': blob})]);
-    alert('Image copied to clipboard');
-  } catch(e){alert('Copy not supported');}
-}
-
 captureScreenBtn.addEventListener('click', captureScreen);
 downloadBtn.addEventListener('click', showInterstitialThenDownload);
-copyBtn.addEventListener('click', copyToClipboard);
 
 if(!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia){
   captureScreenBtn.disabled=true; captureScreenBtn.title='Screen capture not supported';
 }
 
 // --- Feedback form ---
-// --- Feedback form with actual sending function ---
 const sendMessageBtn = document.getElementById('sendMessage');
 const userMessage = document.getElementById('userMessage');
 const messageStatus = document.getElementById('messageStatus');
-
-// 使用您註冊的 Formspree 連結
 const FORMSPREE_URL = 'https://formspree.io/f/mwpnkweg';
 
 sendMessageBtn.addEventListener('click', async () => {
@@ -152,19 +136,17 @@ sendMessageBtn.addEventListener('click', async () => {
     return;
   }
   
-  // 顯示發送中狀態
   messageStatus.textContent = "Sending your message...";
   sendMessageBtn.disabled = true;
   
   try {
-    // 發送訊息到 Formspree
     const response = await fetch(FORMSPREE_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email: 'user@quickshot.com', // 預設郵件，Formspree 需要這個欄位
+        email: 'user@quickshot.com',
         message: msg,
         subject: 'QuickShot User Feedback',
         page: 'QuickShot Screen Capture Tool',
@@ -178,13 +160,12 @@ sendMessageBtn.addEventListener('click', async () => {
     } else {
       messageStatus.textContent = "Sorry, there was an error sending your message. Please try again later.";
     }
-  } catch (error) {
+  } catch(error) {
     console.error('Error sending message:', error);
     messageStatus.textContent = "Network error. Please check your connection and try again.";
   } finally {
     sendMessageBtn.disabled = false;
     
-    // 3秒後清除狀態訊息
     setTimeout(() => {
       messageStatus.textContent = "";
     }, 3000);
