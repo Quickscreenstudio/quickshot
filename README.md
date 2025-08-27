@@ -1,5 +1,19 @@
 # QuickShot - Free Online Screen Capture Tool
 
+🔮 **輕鬆捕捉任何視窗 - 無需安裝！**
+
+![JavaScript](https://img.shields.io/badge/技術-JavaScript-yellow?style=flat-square)
+![HTML5](https://img.shields.io/badge/技術-HTML5-orange?style=flat-square)
+![CSS3](https://img.shields.io/badge/技術-CSS3-blue?style=flat-square)
+![多語言](https://img.shields.io/badge/功能-多語言支持-purple?style=flat-square)
+![隱私保護](https://img.shields.io/badge/安全-隱私保護-green?style=flat-square)
+![免安裝](https://img.shields.io/badge/便利-免安裝-red?style=flat-square)
+[![許可證](https://img.shields.io/badge/許可證-MIT-lightgrey)](https://github.com/quickscreenstudio/quickshot)
+[![最後更新](https://img.shields.io/badge/更新-今天-blue)](https://github.com/quickscreenstudio/quickshot)
+![瀏覽器兼容](https://img.shields.io/badge/兼容-Chrome/Firefox/Edge-success?style=flat-square)
+![在線工具](https://img.shields.io/badge/類型-在線工具-important?style=flat-square)
+
+
 🚀 **Capture any window instantly in your browser - No install needed!**
 
 ![QuickShot Screenshot](https://quickscreenstudio.github.io/quickshot/QS_Logo.png)
