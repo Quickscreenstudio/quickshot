@@ -57,6 +57,21 @@
             margin-bottom: 30px;
         }
         
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            height: 80px;
+            width: 80px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            object-fit: contain;
+        }
+        
         h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
@@ -89,12 +104,18 @@
             justify-content: center;
             overflow: hidden;
             margin-bottom: 10px;
+            position: relative;
         }
         
         .screenshot-preview img {
             max-width: 100%;
             max-height: 100%;
             display: none;
+        }
+        
+        .placeholder-icon {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.3);
         }
         
         .controls {
@@ -196,6 +217,11 @@
                 font-size: 2rem;
             }
             
+            .logo {
+                height: 60px;
+                width: 60px;
+            }
+            
             .controls {
                 flex-direction: column;
                 align-items: center;
@@ -212,13 +238,18 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-camera"></i> QuickShot</h1>
+            <div class="logo-container">
+                <img src="QS_Logo.png" alt="QuickShot Logo" class="logo">
+            </div>
+            <h1>QuickShot</h1>
             <p class="tagline">Free, instant screenshots without any installation</p>
         </header>
         
         <div class="main-content">
             <div class="screenshot-preview">
-                <i class="fas fa-desktop fa-3x"></i>
+                <div class="placeholder-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
                 <img id="previewImage" alt="Screenshot preview">
             </div>
             
@@ -301,7 +332,7 @@
                         previewImg.style.display = 'block';
                         
                         // Hide the default icon
-                        document.querySelector('.screenshot-preview i').style.display = 'none';
+                        document.querySelector('.placeholder-icon').style.display = 'none';
                         
                         // Enable the download button
                         const downloadBtn = document.getElementById('downloadBtn');
