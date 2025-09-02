@@ -92,8 +92,8 @@ const texts = {
     messageButton: "發送消息"
   },
   es: {
-    header: "QuickShot - Herramienta Gratuita de Captura de Pantalla",
-    pickDevice: "Herramienta Gratuita de Captura de Pantalla",
+    header: "QuickShot - Herramienta de captura de pantalla en línea de escritorio",
+    pickDevice: "Herramienta de captura de pantalla en línea de escritorio",
     takeScreenshot: "Capturar Pantalla",
     hint: "Cuando se le solicite, seleccione una ventana y haga clic en Compartir. <br><span style='color:var(--accent-color)'>Volverá automáticamente a esta página después de la selección.</span>",
     download: "Descargar",
@@ -371,4 +371,5 @@ if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
     captureScreenBtn.title = 'Screen capture not supported in your browser';
 
 }
+
 
