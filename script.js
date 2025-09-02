@@ -8,8 +8,8 @@ gtag('config', 'G-VLSKL3Q41S');
 const langSelect = document.getElementById("languageSelect");
 const texts = {
   en: {
-    header: "QuickShot - Free Online Screenshot Tool",
-    pickDevice: "Free Online Screenshot Tool",
+    header: "QuickShot - Desktop Screenshot Tool",
+    pickDevice: "Desktop Screenshot Tool",
     takeScreenshot: "Capture Screen",
     hint: "When prompted, select a <b>Window</b> and click Share. <br><span style='color:var(--accent-color)'>You'll automatically return to this page after selection.</span>",
     download: "Download",
@@ -36,8 +36,8 @@ const texts = {
     messageButton: "Send Message"
   },
   "zh-cn": {
-    header: "QuickShot - 免费在线截图工具",
-    pickDevice: "免费在线截图工具",
+    header: "QuickShot - 电脑桌面截图工具",
+    pickDevice: "电脑桌面截图工具",
     takeScreenshot: "截图",
     hint: "当提示时，选择一个窗口并点击分享。<br><span style='color:var(--accent-color)'>选择后您将自动返回此页面。</span>",
     download: "下载",
@@ -64,8 +64,8 @@ const texts = {
     messageButton: "发送消息"
   },
   "zh-tw": {
-    header: "QuickShot - 免費在線截圖工具",
-    pickDevice: "免費在線截圖工具",
+    header: "QuickShot - 電腦桌面截圖工具",
+    pickDevice: "電腦桌面截圖工具",
     takeScreenshot: "截圖",
     hint: "當提示時，選擇一個視窗並點擊分享。<br><span style='color:var(--accent-color)'>選擇後您將自動返回此頁面。</span>",
     download: "下載",
@@ -369,4 +369,5 @@ downloadBtn.addEventListener('click', downloadScreenshot);
 if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
     captureScreenBtn.disabled = true;
     captureScreenBtn.title = 'Screen capture not supported in your browser';
+
 }
